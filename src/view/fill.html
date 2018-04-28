@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>填写收货信息</title>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+	<style>
+		body{
+			background: #e0efea;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="shouhuo-warp">
+		<div class="shouhuo-top">
+			<img src="../images/shouhuo-top.jpg" alt="">
+		</div> 
+		<div class="shouhuo-from">
+			
+			<div class="shouhuo-input-warp">
+				<div class="shouhuo-inpit-title">收货人</div>
+				<div class="shouhuo-input">
+					<input type="text" placeholder="请输入收货人姓名">
+				</div>
+			</div>	
+
+			<div class="shouhuo-input-warp">
+				<div class="shouhuo-inpit-title">联系方式</div>
+				<div class="shouhuo-input">
+					<input type="text" placeholder="请输入联系方式">
+				</div>
+			</div>
+
+			<div class="shouhuo-input-warp">
+				<div class="shouhuo-inpit-title">所在地区</div>
+				<div class="shouhuo-input">
+					 <select id="select" name="" multiple>
+					 	 
+					 </select>
+				</div>
+			</div>	
+
+			<div class="shouhuo-input-warp">
+				<div class="shouhuo-inpit-title">详细地址</div>
+				<div class="shouhuo-input">
+					<input type="text" placeholder="街道、楼牌号等等">
+				</div>
+			</div>		
+		
+
+		</div>
+
+		<div class="shouhuo-button disable">
+			提交信息
+		</div>
+
+	</div>
+
+</body>
+<script>
+		var bt = navigator.userAgent.toLowerCase();
+		if (bt.match(/(android)\s+([\d.]+)/)) {
+			window.JSCall.fetchTokenOnly();
+		} else {
+			window.location.href = "lebaoedu://fetchTokenOnly";
+		}
+		function getTokenFromApp(token) {
+			document.getElementsByTagName('body')[0].setAttribute('token',token);
+			$.ajax({
+				url :'https://test.api.lebaoedu.com/Api/PclassWorkShare/getcheck/',
+				method :'POST',
+				data : 'token=' + token,
+				dataType : 'json',
+				success :function(data){
+					
+				},
+				error : function(xhr,status,error){
+					 
+				}
+			});
+
+		}
+		
+
+		/*var select = document.getElementById('select');
+		for(var i = 0;i<city.length;i++){
+			var option = document.createElement('option');
+			option.value = city[i].name;
+			option.innerText = city[i].name;
+			select.appendChild(option);
+		}
+*/
+</script>
+ 
+ 
+</html>
